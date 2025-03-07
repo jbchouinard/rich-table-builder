@@ -420,6 +420,7 @@ class TableBuilder(metaclass=TableBuilderMeta):
         cls,
         data: list[Any],
         transposed: bool = False,
+        section_by: SortBy | None = None,
         **kwargs: Unpack[TableOptions],
     ) -> Table:
         """
@@ -448,7 +449,7 @@ class TableBuilder(metaclass=TableBuilderMeta):
             >>> len(table.columns)
             2
         """
-        return cls(transposed=transposed, **kwargs)(data)
+        return cls(transposed=transposed, section_by=section_by, **kwargs)(data)
 
     def _build_field_content(
         self,
