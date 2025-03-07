@@ -1,29 +1,27 @@
-# Rich Table Builder
+# rich-table-builder
 
-A declarative API for building beautiful tables for console output using the [rich](https://github.com/Textualize/rich) library.
+A Python library which extends [rich](https://github.com/Textualize/rich) with a declarative API
+for building beautiful tables for console output.
 
 ## Overview
 
-Rich Table Builder provides a clean, declarative way to define and build tables for console output. It builds on top of `rich.table.Table` and supports all the same arguments while adding powerful features like:
+This library provides a declarative way to define and build tables for console output.
+It builds on top of `rich.table.Table` and supports all the same arguments while adding features like:
 
-- Declarative table structure definition through class attributes
 - Automatic data extraction from objects using flexible key accessors
 - Support for transposing tables (rows become columns)
 - Automatic aggregation for footers (e.g., column totals)
-- Consistent styling for values
 - Customizable formatting for cells
 
 ## Installation
 
-This project uses Poetry for dependency management. To install:
+This package is not on PyPI, it must be installed from GitHub.
 
 ```bash
-# Clone the repository
-git clone https://github.com/yourusername/rich-table-builder.git
-cd rich-table-builder
-
-# Install dependencies with Poetry
-poetry install
+# Install using pip
+pip install git+https://github.com/jbchouinard/rich-table-builder.git
+# Add to poetry project
+poetry add git+https://github.com/jbchouinard/rich-table-builder.git
 ```
 
 ## Usage
@@ -31,7 +29,7 @@ poetry install
 ### Basic Example
 
 ```python
-from rich import print
+import rich
 from richtablebuilder import TableBuilder, TableField, Obj
 
 # Define your table structure
@@ -52,7 +50,7 @@ my_table_builder = CartTableBuilder(show_header=True, show_footer=True)
 table = my_table_builder(cart, title="Shopping Cart")
 
 # Print the table
-print(table)
+rich.print(table)
 ```
 
 ### Advanced Features
@@ -86,6 +84,8 @@ price_field = TableField("Price", key="price", formatter=format_currency)
 Create transposed tables where fields become rows instead of columns:
 
 ```python
+data = []
+
 # Normal table (fields are columns)
 table = my_table_builder(data)
 
@@ -139,14 +139,18 @@ class MyTableBuilder(TableBuilder):
 builder = MyTableBuilder(
     transposed=False,    # Whether to transpose the table
     section_by=None,     # Function to group rows into sections
-    **table_options      # Options passed to rich.table.Table
+    show_header=True,    # Table options passed to rich.table.Table
 )
 
 # Build a table
-table = builder(data, **more_options)
+table = builder(
+    data, 
+    show_header=False,   # Table options here override constructor options
+    show_footer=True,
+)
 
 # Or use the convenience class method
-table = MyTableBuilder.build(data, **options)
+table = MyTableBuilder.build(data, show_header=False, show_footer=True)
 ```
 
 ## Development
@@ -155,7 +159,7 @@ table = MyTableBuilder.build(data, **options)
 
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/rich-table-builder.git
+git clone https://github.com/jbchouinard/rich-table-builder.git
 cd rich-table-builder
 
 # Install dependencies with Poetry
@@ -169,9 +173,6 @@ This project uses pytest for testing, including doctests:
 ```bash
 # Run all tests
 poetry run pytest
-
-# Run doctests specifically
-poetry run pytest richtablebuilder.py -v
 ```
 
 ### Code Style
@@ -184,8 +185,35 @@ poetry run ruff check .
 
 # Apply automatic fixes
 poetry run ruff check --fix .
+
+# Apply formatting
+poetry run ruff format .
 ```
+
+### Commit Conventions
+
+This project follows the [Conventional Commits](https://www.conventionalcommits.org) specification for commit messages. This helps maintain a clear and structured commit history.
+
+Commit message format:
+```
+<type>[optional scope]: <description>
+
+[optional body]
+
+[optional footer(s)]
+```
+
+Common types include:
+- `feat`: A new feature
+- `fix`: A bug fix
+- `docs`: Documentation changes
+- `style`: Code style changes (formatting, etc.)
+- `refactor`: Code changes that neither fix bugs nor add features
+- `test`: Adding or modifying tests
+- `chore`: Changes to the build process or auxiliary tools
 
 ## License
 
 [MIT License](LICENSE)
+
+Copyright (c) 2025 Jerome Boisvert-Chouinard

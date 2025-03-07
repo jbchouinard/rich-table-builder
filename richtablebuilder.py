@@ -637,14 +637,19 @@ def style_by_value(next_style: Callable[[], StyleType]) -> Callable[[RenderableT
 rainbow_by_value = style_by_value(rainbow_cycle)
 
 
-if __name__ == "__main__":
+def example():
     import rich
-    from rich import box
 
     class Item(TypedDict):
         name: str
         price: float
         quantity: int
+
+    def compute_subtotal(item: Item, _: float) -> float:
+        """
+        Calculate the subtotal for an item by multiplying quantity by price.
+        """
+        return item["quantity"] * item["price"]
 
     def format_currency(value: float) -> RenderableType:
         """
@@ -654,12 +659,6 @@ if __name__ == "__main__":
             return f"${value:.2f}"
         else:
             return Text(f"(${-value:.2f})", style="red")
-
-    def subtotal(item: Item, _: float) -> float:
-        """
-        Calculate the subtotal for an item by multiplying quantity by price.
-        """
-        return item["quantity"] * item["price"]
 
     @final
     class CartTableBuilder(TableBuilder):
@@ -686,7 +685,7 @@ if __name__ == "__main__":
         )
         subtotal = TableField(
             "Subtotal",
-            key=subtotal,
+            key=compute_subtotal,
             footer=sum,
             formatter=format_currency,
             justify="right",
@@ -715,3 +714,7 @@ if __name__ == "__main__":
         show_lines=False,
     )
     rich.print(table_t)
+
+
+if __name__ == "__main__":
+    example()

@@ -1,5 +1,8 @@
 - This project uses poetry. Project configuration is located in pyproject.toml. Python commands should be run using poetry.
+- The project repository is located at https://github.com/jbchouinard/rich-table-builder.git
+- This project is a library, not a command line tool. It should be compatible with Python versions 3.10 and above.
 - Follow PEP8 style guide for Python code
 - Use ruff for linting and formatting
 - Use pytest for testing
 - Use type hints consistently
+- Git commit messages in this project should follow conventional commits https://www.conventionalcommits.org
