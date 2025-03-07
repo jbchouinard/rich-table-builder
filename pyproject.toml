@@ -25,6 +25,8 @@ dependencies = [
 ]
 
 [project.urls]
+Homepage = "https://github.com/jbchouinard/rich-table-builder"
+Documentation = "https://github.com/jbchouinard/rich-table-builder#readme"
 Repository = "https://github.com/jbchouinard/rich-table-builder"
 Issues = "https://github.com/jbchouinard/rich-table-builder/issues"
 
