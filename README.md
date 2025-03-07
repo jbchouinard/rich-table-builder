@@ -22,9 +22,13 @@ This package is not on PyPI, it must be installed from GitHub.
 ```bash
 # Install using pip
 pip install git+https://github.com/jbchouinard/rich-table-builder.git
+
 # Add to poetry project
 poetry add git+https://github.com/jbchouinard/rich-table-builder.git
 ```
+
+Alternatively, since this package is a single file, it could also just be copied
+into your project: [richtablebuilder.py](richtablebuilder.py).
 
 ## Usage
 
