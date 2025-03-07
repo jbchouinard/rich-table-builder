@@ -1,3 +1,5 @@
+![workflow status main branch](https://github.com/jbchouinard/rich-table-builder/actions/workflows/tests.yml/badge.svg?branch=main)
+
 # rich-table-builder
 
 A Python library which extends [rich](https://github.com/Textualize/rich) with a declarative API
