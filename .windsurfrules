@@ -1,0 +1,5 @@
+- This project uses poetry. Project configuration is located in pyproject.toml. Python commands should be run using poetry.
+- Follow PEP8 style guide for Python code
+- Use ruff for linting and formatting
+- Use pytest for testing
+- Use type hints consistently

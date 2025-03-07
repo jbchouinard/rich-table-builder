@@ -1,0 +1,57 @@
+[project]
+name = "rich-table-builder"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "Jerome Boisvert-Chouinard",email = "github@jbchouinard.net"}
+]
+readme = "README.md"
+requires-python = ">=3.10,<4"
+dependencies = [
+    "rich (>=13.9.4,<14.0.0)"
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+packages = [
+    {include = "richtablebuilder.py"}
+]
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.3.5"
+ruff = "^0.9.10"
+
+[tool.basedpyright]
+reportExplicitAny = false
+reportAny = false
+reportImplicitOverride = true
+reportPrivateUsage = false
+reportUnnecessaryIsInstance = false
+
+[tool.ruff]
+target-version = "py39"
+line-length = 100
+# Enable auto-fixing
+fix = true
+# Enable automatic sorting of imports
+unsafe-fixes = false
+
+[tool.ruff.lint]
+select = ["E", "F", "B", "I", "N", "W"]
+ignore = []
+exclude = [
+    ".git",
+    ".ruff_cache",
+    "__pycache__",
+    "dist",
+]
+
+[tool.ruff.lint.isort]
+known-first-party = ["richtablebuilder"]
+
+[tool.pytest.ini_options]
+doctest_optionflags = ["NORMALIZE_WHITESPACE", "IGNORE_EXCEPTION_DETAIL"]
+addopts = "--doctest-modules"
