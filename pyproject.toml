@@ -1,6 +1,6 @@
 [project]
 name = "rich-table-builder"
-version = "0.1.0"
+version = "0.1.1"
 description = "A declarative API for building beautiful tables with rich"
 authors = [
     {name = "Jerome Boisvert-Chouinard",email = "github@jbchouinard.net"}
